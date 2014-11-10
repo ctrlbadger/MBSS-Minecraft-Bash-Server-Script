@@ -1,0 +1,32 @@
+#!/bin/bash
+case $1 in
+startserver)
+   case $2 in
+   1.7.10)
+   echo "Starting 1.7 Application"
+   cd /root/ThomasBukkit/
+   screen ./SamLoop.sh
+   ;;
+   1.8)
+   echo "Starting 1.8 Application"
+   cd /root/1.8Vanill/
+   screen ./SamLoop.sh
+   ;;
+   *)
+   echo "Arguments are 1.8|1.7.10"
+   esac
+;;
+stopserver)
+   echo "Stopping Server"
+killall java
+;;
+stopscript)
+   echo "Stopping Script, not reccomended please stop server!"
+   killall SamLoop.sh
+;;
+*)
+echo "Arguments are startserver|stopserver|stopscript"
+;;
+esac
+
+exit
