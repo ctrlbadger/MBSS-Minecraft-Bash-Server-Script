@@ -1,9 +1,9 @@
 #!/bin/bash
-// This file is placed in /usr/bin but will be downloaded with the install.sh
-// $1 is the first argument when executing the command
+# This file is placed in /usr/bin but will be downloaded with the install.sh
+# $1 is the first argument when executing the command
 case $1 in
 startserver)
-   // $2 is the second argument choosing which version
+   # $2 is the second argument choosing which version
    case $2 in
    1.7.10)
    echo "Starting 1.7 Application"
