@@ -20,6 +20,14 @@ reinstall () {
   rm Server
   wget https://raw.githubusercontent.com/ctrlbadger/MBSS-Minecraft-Bash-Server-Script/master/Server
 }
+
+delete () {
+  echo "Deleting all files"
+  rm SamLoop.sh
+  rm minecraft_server.1.8.jar
+  cd /bin/usr
+  rm Server
+}
 echo "Do you want to (I)nstall|(D)elete|(R)einstall"
 read Install
 if [Install == "I"]; then
