@@ -27,6 +27,7 @@ stopscript)
    echo "Stopping Script, not reccomended please stop server!"
    killall SamLoop.sh
 ;;
+s
 *)
    echo "Arguments are startserver|stopserver|stopscript"
 ;;
