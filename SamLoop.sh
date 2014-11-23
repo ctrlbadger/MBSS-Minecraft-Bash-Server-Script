@@ -3,11 +3,12 @@
 #Settings
 JAR='minecraft_server.1.8.jar'
 INVOCATION="java -Xmx1024M -Xms1024M -jar $JAR"
-SUM=60
-WARN=60
+TIMES=4
 SAVEALL=15
 SAVELOOP=1
-
+LOOP="SERVER A"
+VALID="SERVER A"
+SUM=$((TIMES * SAVEALL))
 WARN2=$((WARN / 2))
 WARN3=$((WARN2 - 10))
 
@@ -25,26 +26,19 @@ echo "                                                      |_|        "
 
 while true;
 do
-   echo b
+   echo "$LOOP"
    screen -dmS mc1.8 $INVOCATION
-   while [ "$SAVELOOP" -lt "$SUM" ]; do
-      echo SAVEALL
+   while [ "$SAVELOOP" -le "$TIMES" ]; do
       sleep $(($SAVEALL * 60))
+      echo "SAVEALL"
       screen -S mc -X -p 0 stuff "save-all$(printf \\r)"
-      SAVELOOP=$(($SAVELOOP + $SAVEALL))
+      SAVELOOP=$((SAVELOOP + 1))
    done
    SAVELOOP=1
-   SAVEALL=1
+   SAVEALL=15
    echo STOPPING
-   screen -S mc -X -p 0 stuff "say SERVER RESTART IN $WARN SECONDS$(printf \\r)"
-   sleep $WARN2
-   screen -S mc -X -p 0 stuff "say SERVER RESTART IN $WARN2 SECONDS$(printf \\r)"
-   sleep $WARN3
-   screen -S mc -X -p 0 stuff "say SERVER RESTART IN 10 SECONDS$(printf \\r)"
-   sleep 5
-   screen -S mc -X -p 0 stuff "say SERVER RESTART IN 5 SECONDS$(printf \\r)"
-   sleep 5
-   screen -S mc -X -p 0 stuff "stop $(printf \\r)"
-   echo a
+   screen -S mc1.8 -X -p 0 stuff "stop$(printf \\r)"
+   sleep 15
    killall java
+   screen -wipe
 done
