@@ -1,19 +1,29 @@
 #!/bin/sh
-Loop = "https://raw.githubusercontent.com/ctrlbadger/MBSS-Minecraft-Bash-Server-Script/master/SamLoop.sh"
-Comm = "https://s3.amazonaws.com/Minecraft.Download/versions/1.8/minecraft_server.1.8.jar"
-install () {
-  echo "Welcome to MBSEE\nWe will install the loop and server in this folder"
-  wget -q "$Loop"
+#Initialising downloads
+GetLoop = "https://raw.githubusercontent.com/ctrlbadger/MBSS-Minecraft-Bash-Server-Script/master/SamLoop.sh"
+GetJar = "https://s3.amazonaws.com/Minecraft.Download/versions/1.8.4/minecraft_server.1.8.4.jar"
+Sure = 1
+install () {  #Install Function: Used to install the script and jar
+  echo "Welcome to MBSEE\nWe will install the loop script and minecraft.jar in this folder"
+  wget -q "$GetLoop"
   echo "Downloading minecraft server 1.8 jar"
-  wget -q "$Com"
+  wget -q "$GetJar"
 }
-reinstall () {
-  echo "Deleting files then installing them again"
+reinstall () { #Reinstall Function
+  echo "\nDeleting files then installing them again"
+  echo "\nAre you sure you want to delete than reinstall your files?"
+  read Sure
+  if (Sure = 0) {
   rm SamLoop.sh
-  rm minecraft_server.1.8.jar
-  wget -q "$Loop"
-  wget -q "$Com"
+  rm minecraft_server.1.8.4.jar
+  wget -q "$GetLoop"
+  wget -q "$GetJar"
+  }
+  else {
+    echo "Ok, thanks for telling me!"
+  }
 }
+
 echo "Do you want to (I)nstall|(R)einstall"
 read Install
 if [Install == "I"]; then
