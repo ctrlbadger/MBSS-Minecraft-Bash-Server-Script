@@ -3,22 +3,24 @@
 GetLoop = "https://raw.githubusercontent.com/ctrlbadger/MBSS-Minecraft-Bash-Server-Script/master/SamLoop.sh"
 GetJar = "https://s3.amazonaws.com/Minecraft.Download/versions/1.8.4/minecraft_server.1.8.4.jar"
 Sure = 1
-install () {  #Install Function: Used to install the script and jar
+function install {  #Install Function: Used to install the script and jar
   echo "Welcome to MBSEE\nWe will install the loop script and minecraft.jar in this folder"
   wget -q "$GetLoop"
   echo "Downloading minecraft server 1.8 jar"
   wget -q "$GetJar"
 }
-reinstall () { #Reinstall Function
+#Reinstall Function
+function reinstall {
   echo "\nDeleting files then installing them again"
-  echo "\nAre you sure you want to delete than reinstall your files?"
+  echo "\nAre you sure you want to delete than reinstall your files? Y/N :"
   read Sure
-  if (Sure = 0) {
+  if [ $Sure == "Y" ];
+  then
   rm SamLoop.sh
   rm minecraft_server.1.8.4.jar
   wget -q "$GetLoop"
   wget -q "$GetJar"
-  }
+  fi
   else {
     echo "Ok, thanks for telling me!"
   }
