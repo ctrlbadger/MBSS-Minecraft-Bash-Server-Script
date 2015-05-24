@@ -4,34 +4,34 @@ GetLoop = "https://raw.githubusercontent.com/ctrlbadger/MBSS-Minecraft-Bash-Serv
 GetJar = "https://s3.amazonaws.com/Minecraft.Download/versions/1.8.4/minecraft_server.1.8.4.jar"
 Sure = 1
 function install {  #Install Function: Used to install the script and jar
-  echo "Welcome to MBSEE\nWe will install the loop script and minecraft.jar in this folder"
+  printf "Welcome to MBSEE\nWe will install the loop script and minecraft.jar in this folder"
   wget -q "$GetLoop"
-  echo "Downloading minecraft server 1.8 jar"
+  printf "Downloading minecraft server 1.8 jar"
   wget -q "$GetJar"
 }
 #Reinstall Function
 function reinstall {
-  echo "\nDeleting files then installing them again"
-  echo "\nAre you sure you want to delete than reinstall your files? Y/N :"
+  printf "\nDeleting files then installing them again"
+  printf "\nAre you sure you want to delete than reinstall your files? Y/N :"
   read Sure
   if [ $Sure == "Y" ];
   then
-  rm SamLoop.sh
-  rm minecraft_server.1.8.4.jar
-  wget -q "$GetLoop"
-  wget -q "$GetJar"
+    rm SamLoop.sh
+    rm minecraft_server.1.8.4.jar
+    wget -q "$GetLoop"
+    wget -q "$GetJar"
+  else
+    printf "Ok, thanks for telling me!"
+    exit
   fi
-  else {
-    echo "Ok, thanks for telling me!"
-  }
 }
 
 echo "Do you want to (I)nstall|(R)einstall"
 read Install
-if [Install == "I"]; then
+if [ $Install == "I" ]; then
   install
 else
   reinstall
 fi
-echo "To start the server type 'Server' in the command line followed by the appropriate arguments"
+printf "To start the server type 'Server' in the command line followed by the appropriate arguments"
 exit
