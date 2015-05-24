@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 #Settings
 JAR='minecraft_server.1.8.jar'
@@ -7,10 +7,6 @@ TIMES=4
 SAVEALL=15
 SAVELOOP=1
 LOOP="SERVER A"
-VALID="SERVER A"
-SUM=$((TIMES * SAVEALL))
-WARN2=$((WARN / 2))
-WARN3=$((WARN2 - 10))
 
 clear
 echo "   _____                             _____           _       _   "
@@ -27,9 +23,9 @@ echo "                                                      |_|        "
 while true;
 do
    echo "$LOOP"
-   screen -dmS mc1.8 $INVOCATION
+   screen -dmS mc1.8 "$INVOCATION"
    while [ "$SAVELOOP" -le "$TIMES" ]; do
-      sleep $(($SAVEALL * 60))
+      sleep $"($SAVEALL * 60)"
       echo "SAVEALL"
       screen -S mc -X -p 0 stuff "save-all$(printf \\r)"
       SAVELOOP=$((SAVELOOP + 1))
